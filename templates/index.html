@@ -1,0 +1,17 @@
+{% from "_formhelpers.html" import render_field %}
+
+<html>
+  <head>
+    <title>
+      IAChat Login
+    </title>
+  </head>
+  <body>
+    <form method="POST" action="/home">
+      {{form.csrf_token}}
+      {{render_field(form.username)}}
+      {{render_field(form.password)}}
+      <input type="submit" value="Login">
+    </form>
+  </body>
+</html>
