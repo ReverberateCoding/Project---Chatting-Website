@@ -6,23 +6,24 @@ from models import *
 app = Flask(__name__)
 
 app.secret_key = 'replace later'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///main.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
+
 
 @app.route('/', methods=['GET','POST'])
 def index():
     reg_form = RegistrationForm()
     if reg_form.validate_on_submit():
-        username = reg_form.username.data
-        password = reg_form.password.data
+        username_data = reg_form.username.data
+        password_data = reg_form.password.data
 
-        user_object = User.query.filter_by(username=username).first()
+        user_object = User.query.filter_by(username=username_data).first()
         if user_object:
             return "Someone else has taken this username!"
         else:
-            user = User(username=username, password=password)
+            user = User(username=username_data, password=password_data)
             db.session.add(user)
             db.session.commit()
             return "Inserted into DB!"
