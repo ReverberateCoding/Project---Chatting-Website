@@ -1,4 +1,5 @@
 from flask import Flask, render_template, redirect, url_for
+from flask_sqlalchemy import SQLAlchemy
 from wtform_field import *
 from models import *
 
@@ -17,11 +18,14 @@ def index():
         username = reg_form.username.data
         password = reg_form.password.data
 
-
-        user = User(username=username, password=password)
-        db.session.add(user)
-        db.session.commit()
-        return "Inserted into DB!"
+        user_object = User.query.filter_by(username=username).first()
+        if user_object:
+            return "Someone else has taken this username!"
+        else:
+            user = User(username=username, password=password)
+            db.session.add(user)
+            db.session.commit()
+            return "Inserted into DB!"
     return render_template('index.html',form=reg_form)
 
 if __name__ == "__main__":
