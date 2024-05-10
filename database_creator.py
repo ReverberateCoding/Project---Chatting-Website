@@ -1,3 +1,3 @@
-from main import app, db
+from app import db, User, app
 with app.app_context():
-	db.create_all()
+    db.create_all()
