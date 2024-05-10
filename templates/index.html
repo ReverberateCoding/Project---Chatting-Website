@@ -25,5 +25,10 @@ Registration
         <p>
             Welcome to my website
         </p>
+        <ul>
+            {% for user in users %}
+                <li>{{user}}</li>
+            {% endfor %}
+        </ul>
     </div>  
 {% endblock %}

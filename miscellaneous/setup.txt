@@ -1,0 +1,7 @@
+In main file path, run the following commands
+
+flask db init <- Do only once
+
+flask db migrate <- Do everytime you change a scheme like a model, form etc.
+
+flask db upgrade
