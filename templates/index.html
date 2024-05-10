@@ -6,19 +6,21 @@ Registration
 {% endblock %}
  
 {% block content %}
-    <form action="{{url_for('index')}}", method="POST">
-        <div>
-            
-            {{displayField(form.username,'Username',autocomplete="off",autofocus=true)}}
-            {{displayField(form.password,'Username')}}
-            {{displayField(form.confirm_password,'Retype Password')}}
-            
-        </div>
-        <div>
-            {{ form.submit_button}}
-        </div>
-        {{ form.csrf_token }}
-    </form>
+    <div>
+        <form action="{{url_for('index')}}", method="POST">
+            <div>
+                
+                {{displayField(form.username,'Username',autocomplete="off",autofocus=true)}}
+                {{displayField(form.password,'Username')}}
+                {{displayField(form.confirm_password,'Retype Password')}}
+                
+            </div>
+            <div>
+                {{ form.submit_button}}
+            </div>
+            {{ form.csrf_token }}
+        </form>
+    </div>
     <div class="center">
         <p>
             Welcome to my website
