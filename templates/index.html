@@ -6,12 +6,13 @@ Registration
 {% endblock %}
  
 {% block content %}
+    <h1>Create an account!</h1>
     <div>
         <form action="{{url_for('index')}}", method="POST">
             <div>
                 
                 {{displayField(form.username,'Username',autocomplete="off",autofocus=true)}}
-                {{displayField(form.password,'Username')}}
+                {{displayField(form.password,'Password')}}
                 {{displayField(form.confirm_password,'Retype Password')}}
                 
             </div>
