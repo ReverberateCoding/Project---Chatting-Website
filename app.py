@@ -16,5 +16,6 @@ def create_app():
     register_routes(app, db)
 
     migrate = Migrate(app, db)
+    
     return app
 
