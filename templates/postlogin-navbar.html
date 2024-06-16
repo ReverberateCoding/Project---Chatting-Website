@@ -1,0 +1,13 @@
+<h4>ROOMS</h4>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        {% for room in rooms %}
+        <li class="nav-item">
+            <button class="select-room">{{room}}</button>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </nav>
