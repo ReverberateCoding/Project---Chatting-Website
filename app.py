@@ -4,13 +4,17 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_login import LoginManager, login_user, current_user, logout_user
 from flask_socketio import SocketIO, join_room, leave_room, send, emit
 from flask_migrate import Migrate
-from gevent import monkey
 
 from wtform_fields import *
 from models import *
 
 # Monkey patching is necessary to make standard library 
 # cooperative with gevent
+
+from gevent import monkey
+from gevent.pywsgi import WSGIServer
+from geventwebsocket.handler import WebSocketHandler
+
 monkey.patch_all()
 
 # Configure app
@@ -114,5 +118,7 @@ def leave(data):
     leave_room(room)
     send({'msg': f'{username} has left the {room} room.'}, room=room)
 
+http_server = WSGIServer(('0.0.0.0', 2002), app, handler_class=WebSocketHandler)
+
 if __name__ == '__main__': 
-    socketio.run(app, host='0.0.0.0', port=2002)
+    http_server.serve_forever()
